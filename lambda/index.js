@@ -6,7 +6,7 @@ exports.handler = async (event) => {
     headers: {
           "Content-Type": "application/json"
     },
-    body: JSON.stringify('Message from ' + envValue),
+    body: JSON.stringify('Message from ' Lambda Hello World),
   };
   return response;
 };

@@ -1,32 +1,20 @@
-# Terraform with AWS
+# Secure API Gateway using Cognito User Pool
 
-## [Click here to watch the Lectures.](https://www.youtube.com/playlist?list=PLnRSa-mtH0ngx4ovc58PTZFmI5oIVu6aK)
+### AWS CLI Command to generate token : 
 
-This is a repository for code shown in the lectures. It contains directory as per the lecture number.
+```
+aws cognito-idp admin-initiate-auth  --region <REGION> --user-pool-id <USER_POOL_ID>  --client-id <CLIENT_ID> --auth-flow ADMIN_NO_SRP_AUTH --auth-parameters USERNAME=<USERNAME>,PASSWORD=<PASSWORD>
+```
 
-### Prerequisites:
-- [AWS Account](https://aws.amazon.com/resources/create-account/)
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) or [Using ENV variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) 
-- [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
-- IDE
+### To export variable
 
-### Lectures:
+```
+export TF_VAR_username=test
+export TF_VAR_password=your_password
+```
 
-- Lecture 1 : Terraform Introduction (IaC) [(Video)](https://youtu.be/uN05DrdZRSY)
-- [Lecture 2](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-2) : Create First Resource in AWS using Terraform [(Video)](https://youtu.be/hOr38M6pVYw)
-- [Lecture 3](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-3) : Terraform Variables [(Video)](https://youtu.be/V3oXJfdQar8)
-- [Lecture 4](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-4) : AWS VPC using Terraform [(Video)](https://youtu.be/VLcvkpUFUMo)
-- [Lecture 5](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-5) : Setup AWS Application Load Balancer with Auto Scaling Group using Terraform [(Video)](https://youtu.be/1m54kzfjGtM)
-- [Lecture 6](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-6) : Amazon API Gateway with AWS Lambda function using Terraform [(Video)](https://youtu.be/gpXmaDwfQ50)
-- [Lecture 7](https://github.com/kodedge-swapneel/terraform-lectures/tree/main/lecture-7) : Secure Amazon API Gateway using Cognito User Pool - Terraform  [(Video)](https://youtu.be/Afp2tDUXyWM)
-
-
-### Perform following steps for deployment:
-
-Note - Setup AWS environment on local before running following commands. Refer document : [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-
-For example, let's say you want to deploy VPC, then run following commands :
-
-- `cd lecture-4`
-- `terraform init`
-- `terraform apply`
+### Other useful resources:
+- [AWS CLI admin-initiate-auth command](https://docs.aws.amazon.com/cli/latest/reference/cognito-idp/admin-initiate-auth.html)
+- [AWS initiate-auth](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html)
+- [Managing user existence error responses](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-managing-errors.html)
+- [Terraform - Cognito User Pool](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool)
