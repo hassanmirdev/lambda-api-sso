@@ -50,9 +50,8 @@ resource "aws_api_gateway_resource" "yt_api_resource" {
 resource "aws_api_gateway_method" "yt_method" {
   resource_id   = aws_api_gateway_resource.yt_api_resource.id
   rest_api_id   = aws_api_gateway_rest_api.yt_api.id
-  http_method   = "POST"
-  authorization = "COGNITO_USER_POOLS"
-  authorizer_id = aws_api_gateway_authorizer.apigw_authorizer.id
+  http_method   = "ANY"  # Allow all HTTP methods
+  authorization = "NONE" # Adjust if you need authorization
 }
 
 resource "aws_api_gateway_integration" "lambda_integration" {
@@ -90,7 +89,7 @@ resource "aws_lambda_permission" "apigw_lambda_permission" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.yt_lambda_function.function_name
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_rest_api.yt_api.execution_arn}/*/*/*"
+  source_arn    = "${aws_api_gateway_rest_api.yt_api.execution_arn}/*/*"  # Matches all methods on all paths
 }
 
 output "invoke_url" {
