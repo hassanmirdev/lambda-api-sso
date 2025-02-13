@@ -1,12 +1,8 @@
 exports.handler = async (event) => {
-  let envValue = process.env.VIDEO_NAME
-
-  const response = {
+  return {
     statusCode: 200,
-    headers: {
-          "Content-Type": "application/json"
-    },
-    body: JSON.stringify('Message from ' Lambda Hello World),
+    body: JSON.stringify({
+      message: 'Hello, World!',
+    }),
   };
-  return response;
 };
