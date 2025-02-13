@@ -21,16 +21,6 @@ resource "aws_cognito_user_pool_client" "yt_userpool_client" {
   prevent_user_existence_errors        = "ENABLED"
 }
 
-variable "username" {
-  type      = string
-  sensitive = true
-}
-
-variable "password" {
-  type      = string
-  sensitive = true
-}
-
 resource "aws_cognito_user" "yt_user" {
   user_pool_id = aws_cognito_user_pool.yt_cognito_pool.id
   username     = var.username
