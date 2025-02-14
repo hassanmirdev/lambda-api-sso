@@ -6,15 +6,7 @@ data "archive_file" "lambda_zip_file" {
   output_path = "app/index.zip"
 }
 
-resource "aws_iam_role" "lambda_role" {
-  name               = "lambda_role"
-  assume_role_policy = file("lambda-policy.json")
-}
 
-resource "aws_iam_role_policy_attachment" "lambda_exec_role_attachment" {
-  role       = aws_iam_role.lambda_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-}
 
 resource "aws_lambda_function" "my_lambda_function" {
   filename         = app/index.zip"
