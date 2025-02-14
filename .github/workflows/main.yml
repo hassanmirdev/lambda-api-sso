@@ -32,7 +32,11 @@ jobs:
         aws-region: us-east-1
         audience: sts.amazonaws.com
     - name: Terraform Init
-      run: terraform init
+      run: | 
+       cd ./infra/environments/dev
+       terraform init
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      run: |
+        cd ./infra/environments/dev
+        terraform apply -auto-approve
