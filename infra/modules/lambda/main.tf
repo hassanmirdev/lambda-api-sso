@@ -97,8 +97,7 @@ output "invoke_url" {
 }
 
 
-output "rest_api_id "{
-  value      = "aws_api_gateway_rest_api.my_api.id"
-   description = "API for Demo"
+output "rest_api_id" {
+  value = aws_api_gateway_rest_api.my_api.id
 }
-  
+
