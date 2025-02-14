@@ -1,7 +1,7 @@
 #1 Create Lambda Function
 data "archive_file" "lambda_zip_file" {
   type        = "zip"
-  source_file = "lambda/index.js"
+  source_file = "app/index.js"
   output_path = "lambda/index.zip"
 }
 
@@ -16,7 +16,7 @@ resource "aws_iam_role_policy_attachment" "lambda_exec_role_attachment" {
 }
 
 resource "aws_lambda_function" "my_lambda_function" {
-  filename         = "lambda/index.zip"
+  filename         = "app/index.zip"
   function_name    = "DemoLambdaFunction"
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
