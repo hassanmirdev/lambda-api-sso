@@ -95,3 +95,10 @@ resource "aws_lambda_permission" "apigw_lambda_permission" {
 output "invoke_url" {
   value = aws_api_gateway_deployment.api_deployment.invoke_url
 }
+
+
+output "rest_api_id "{
+  value      = "aws_api_gateway_rest_api.my_api.id"
+   description = "API for Demo"
+}
+  
