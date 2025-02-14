@@ -29,11 +29,13 @@ resource "aws_cognito_user" "my_user" {
 
 resource "aws_api_gateway_authorizer" "apigw_authorizer" {
   name          = "apigw_authorizer"
-  rest_api_id   = aws_api_gateway_rest_api.my_api.id
+  rest_api_id   = var.rest_api_id  # Use the input variable here
+  # rest_api_id   = aws_api_gateway_rest_api.my_api.id
   type          = "COGNITO_USER_POOLS"
   provider_arns = [aws_cognito_user_pool.my_cognito_pool.arn]
 }
 
-# Run following on command line before terraform apply command
+
+# Run following on command line before terraform apply command, if you want to pass the username and value dynamically.
 #export TF_VAR_username=test
 #export TF_VAR_password=your_password
