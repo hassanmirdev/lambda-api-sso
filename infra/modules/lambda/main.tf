@@ -1,15 +1,22 @@
 #1 Create Lambda Function
-
 data "archive_file" "lambda_zip_file" {
   type        = "zip"
-  source_file = "app/index.js"
-  output_path = "app/index.zip"
+  source_file = "lambda/index.js"
+  output_path = "lambda/index.zip"
 }
 
+resource "aws_iam_role" "lambda_role" {
+  name               = "lambda_role"
+  assume_role_policy = file("lambda-policy.json")
+}
 
+resource "aws_iam_role_policy_attachment" "lambda_exec_role_attachment" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
 
 resource "aws_lambda_function" "my_lambda_function" {
-  filename         = app/index.zip"
+  filename         = "lambda/index.zip"
   function_name    = "DemoLambdaFunction"
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
@@ -19,14 +26,14 @@ resource "aws_lambda_function" "my_lambda_function" {
 
   environment {
     variables = {
-     NAME = "Lambda-API-SSO-Demo"
+      VIDEO_NAME = "Lambda Terraform Demo"
     }
   }
 }
 
 #2 Create API Gateway
 resource "aws_api_gateway_rest_api" "my_api" {
-  name        = "my_api"
+  name        = "my-api"
   description = "API for Demo"
 
   endpoint_configuration {
