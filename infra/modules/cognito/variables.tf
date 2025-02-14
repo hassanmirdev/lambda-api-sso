@@ -9,3 +9,8 @@ variable "password" {
   type        = string
  default    = "Hassan@123"
 }
+
+variable "rest_api_id" {
+  description = "The API Gateway ID"
+  type        = string
+}
