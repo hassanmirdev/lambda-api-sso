@@ -64,7 +64,7 @@ resource "aws_api_gateway_integration" "lambda_integration" {
 
 resource "aws_api_gateway_deployment" "api_deployment" {
   rest_api_id = aws_api_gateway_rest_api.my_api.id
-  stage = "dev"
+  stage_name = "dev"
 
   triggers = {
     redeployment = sha1(jsonencode([
