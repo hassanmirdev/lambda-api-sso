@@ -2,7 +2,7 @@
 data "archive_file" "lambda_zip_file" {
   type        = "zip"
   source_file = "app/index.js"
-  output_path = "lambda/index.zip"
+  output_path = "app/index.zip"
 }
 
 resource "aws_iam_role" "lambda_role" {
