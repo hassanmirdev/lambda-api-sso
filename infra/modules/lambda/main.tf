@@ -1,9 +1,9 @@
 #1 Create Lambda Function
-data "archive_file" "lambda_zip_file" {
-  type        = "zip"
-  source_file = "./app/index.js"
-  output_path = "./app/index.zip"
-}
+# data "archive_file" "lambda_zip_file" {
+#  type        = "zip"
+# source_file = "./app/index.js"
+#  output_path = "./app/index.zip"
+# }
 
 resource "aws_iam_role" "lambda_role" {
   name               = "lambda_role"
