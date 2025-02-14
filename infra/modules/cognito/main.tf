@@ -37,19 +37,3 @@ resource "aws_api_gateway_authorizer" "apigw_authorizer" {
 # Run following on command line before terraform apply command
 #export TF_VAR_username=test
 #export TF_VAR_password=your_password
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
