@@ -1,13 +1,8 @@
-name: Deploy to AWS Lambda using OIDC.
+name: Deploy Lambda Api SSO
 
 on:
   workflow_dispatch:
   
-  
-  push:
-    branches:
-      - main
-
 permissions:
   id-token: write
 
@@ -31,6 +26,8 @@ jobs:
         role-session-name: github-actions-session
         aws-region: us-east-1
         audience: sts.amazonaws.com
+
+        
     - name: Terraform Init
       run: | 
        cd ./infra/environments/dev
