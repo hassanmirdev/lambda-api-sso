@@ -1,5 +1,5 @@
-resource "aws_cognito_user_pool" "yt_cognito_pool" {
-  name = "yt_cognito_pool"
+resource "aws_cognito_user_pool" "my_cognito_pool" {
+  name = "my_cognito_pool"
   password_policy {
     minimum_length    = 8
     require_lowercase = false
@@ -9,9 +9,9 @@ resource "aws_cognito_user_pool" "yt_cognito_pool" {
   }
 }
 
-resource "aws_cognito_user_pool_client" "yt_userpool_client" {
-  name                                 = "yt_userpool_client"
-  user_pool_id                         = aws_cognito_user_pool.yt_cognito_pool.id
+resource "aws_cognito_user_pool_client" "my_userpool_client" {
+  name                                 = "my_userpool_client"
+  user_pool_id                         = aws_cognito_user_pool.my_cognito_pool.id
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code", "implicit"]
   allowed_oauth_scopes                 = ["aws.cognito.signin.user.admin"]
@@ -21,17 +21,17 @@ resource "aws_cognito_user_pool_client" "yt_userpool_client" {
   prevent_user_existence_errors        = "ENABLED"
 }
 
-resource "aws_cognito_user" "yt_user" {
-  user_pool_id = aws_cognito_user_pool.yt_cognito_pool.id
+resource "aws_cognito_user" "my_user" {
+  user_pool_id = aws_cognito_user_pool.my_cognito_pool.id
   username     = var.username
   password     = var.password
 }
 
 resource "aws_api_gateway_authorizer" "apigw_authorizer" {
   name          = "apigw_authorizer"
-  rest_api_id   = aws_api_gateway_rest_api.yt_api.id
+  rest_api_id   = aws_api_gateway_rest_api.my_api.id
   type          = "COGNITO_USER_POOLS"
-  provider_arns = [aws_cognito_user_pool.yt_cognito_pool.arn]
+  provider_arns = [aws_cognito_user_pool.my_cognito_pool.arn]
 }
 
 # Run following on command line before terraform apply command
